@@ -11,13 +11,16 @@
 
 struct Node {
     int data;
-    Node* next;
+    struct Node* next;
 };
+
+void insertAtBeginning(int data);
+struct Node* head;
 
 void printList(struct Node* head){
     struct Node* current = head;
     while(current != NULL){
-        printf(" address: %u, data: %d, next: %u ",current, current -> data, current->next);
+        printf(" address: %u, data: %d, next: %u  \n",current, current -> data, current->next);
         current = current -> next;
     }
     
@@ -25,20 +28,25 @@ void printList(struct Node* head){
 }
 
 int main(){
-    struct Node* head = (struct Node*)malloc(sizeof(struct Node));
-    head->data = 5;
-    head->next = NULL;
-    
-    
-    struct Node* element1 = (struct Node*)malloc(sizeof(struct Node));
-    element1->data = 4;
-    element1->next = NULL;
-    head->next = element1;
-    
-    struct Node* element2 = (struct Node*)malloc(sizeof(struct Node));
-    element2->data = 3;
+    Node* element2 = (struct Node*)malloc(sizeof(struct Node));
+    element2->data = 5;
     element2->next = NULL;
+    
+    Node* element1 = new Node;
+    element1->data = 4;
     element1->next = element2;
     
+    
+    head = element1;
+
+    insertAtBeginning(250);
     printList(head);
+}
+
+
+void insertAtBeginning(int x){
+    Node* temp = (Node*)malloc(sizeof(struct Node));
+    temp -> data = x;
+    temp -> next = head;
+    head = temp;
 }
