@@ -32,7 +32,7 @@ int main(int argc, const char * argv[]) {
     insertAtHead(&head, 2);
     insertAtHead(&head, 1);
     
-    insertAtIndex(&head, 4, 0);
+    insertAtIndex(&head, 5, 0);
     
     printList(head);
     
@@ -72,6 +72,8 @@ void insertAtIndex(struct Node** pointer2Head, int index, int data){
     if (i == index - 1) {
         insertingNode -> next = prev -> next;
         prev -> next = insertingNode;
+    }else{
+        printf(" \n =========== \n index out of bound!  \n =========== \n");
     }
     
     
