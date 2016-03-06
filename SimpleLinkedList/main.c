@@ -32,7 +32,7 @@ int main(int argc, const char * argv[]) {
     insertAtHead(&head, 2);
     insertAtHead(&head, 1);
     
-    insertAtIndex(&head, 1, 0);
+    insertAtIndex(&head, 4, 0);
     
     printList(head);
     
@@ -51,32 +51,29 @@ void insertAtHead( struct Node** pointer2Head, int data){
 void insertAtIndex(struct Node** pointer2Head, int index, int data){
     struct Node* head = *pointer2Head;
     struct Node* prev = head;
-    struct Node* next = head -> next;
-    struct Node* temp = (struct Node*)malloc(sizeof(struct Node));
-    temp -> data = data;
-    temp -> next = NULL;
+    struct Node* insertingNode = (struct Node*)malloc(sizeof(struct Node));
+    insertingNode -> data = data;
+    insertingNode -> next = NULL;
     
     if (index == 0) {
-        temp -> next = head;
-        (*pointer2Head) = temp;
+        insertingNode -> next = head;
+        (*pointer2Head) = insertingNode;
         return;
     }
     
     
     int i = 0;
-    while (i < index - 1 && next != NULL) {
-        
+    while (i < index - 1 && prev -> next != NULL) {
         i++;
-        next = next -> next;
         prev = prev -> next;
     }
     
+    
     if (i == index - 1) {
-        
-        temp -> next = next;
-        prev -> next = temp;
-        
+        insertingNode -> next = prev -> next;
+        prev -> next = insertingNode;
     }
+    
     
     
 }
