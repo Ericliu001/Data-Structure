@@ -20,6 +20,7 @@ void printList(struct Node* temp);
 void insertAtHead( struct Node** pointer2Head, int data);
 
 void insertAtIndex(struct Node** pointer2Head, int index, int data);
+void deleteAtIndex(struct Node** pointer2Head, int index);
 
 int main(int argc, const char * argv[]) {
     
@@ -32,7 +33,13 @@ int main(int argc, const char * argv[]) {
     insertAtHead(&head, 2);
     insertAtHead(&head, 1);
     
-    insertAtIndex(&head, 5, 0);
+    insertAtIndex(&head, 0, 0);
+    
+    printList(head);
+    
+    printf("start deleting... \n");
+    
+    deleteAtIndex(&head, 4);
     
     printList(head);
     
@@ -57,7 +64,7 @@ void insertAtIndex(struct Node** pointer2Head, int index, int data){
     
     if (index == 0) {
         insertingNode -> next = head;
-        (*pointer2Head) = insertingNode;
+        (*pointer2Head) = insertingNode; // very important to use the de-referencing here
         return;
     }
     
@@ -78,6 +85,35 @@ void insertAtIndex(struct Node** pointer2Head, int index, int data){
     
     
     
+}
+
+
+void deleteAtIndex(struct Node** pointer2Head, int index){
+    struct Node* head = *pointer2Head;
+    struct Node* prev = head;
+    
+    if (index == 0) {
+        *pointer2Head = head -> next; // very important to use the de-referencing here
+        free(prev);
+        return;
+    }
+    
+    int i = 0;
+    while (i < index -1 && (prev -> next)-> next != NULL) {
+        i ++;
+        prev = prev -> next;
+    }
+    
+    if (i == index -1) {
+        struct Node* next = prev -> next;
+        
+        prev -> next = next -> next;
+        free(next);
+        
+    }else{
+        printf(" \n =========== \n index out of bound!  \n =========== \n");
+    }
+
 }
 
 
