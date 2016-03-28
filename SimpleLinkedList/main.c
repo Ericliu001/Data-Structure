@@ -125,25 +125,32 @@ void deleteAtIndex(struct Node** pointer2Head, int index){
 
 void reverseList(struct Node** pointer2Head){
     struct Node* prev = NULL;
-    struct Node* current;
-    struct Node* next;
-    struct Node* head = *pointer2Head;
+    struct Node* current, *next;
     
-    current = head;
-    next = head;
     
-    while ( next != NULL) {
-        current = next;
-        next = next -> next;
+    
+    current = *pointer2Head;
+    
+    
+    while ( current != NULL) {
         
+        // 1. use a temperary pointer: next to save the current->next position
+        next = current -> next;
+        
+        // 2. reverse the next-pointer in the current node
         current -> next = prev;
+        
+        // 3. move forward the prev node as well
         prev = current;
         
+        // 4. move to the next position
+        current = next;
         
-        
-        // 1. start moving the index
     }
-    *pointer2Head = current;
+    
+    // 5. eventually the current and next will be moved to the last node which is null.
+    // reset the head to the prev position
+    *pointer2Head = prev;
     
 }
 
