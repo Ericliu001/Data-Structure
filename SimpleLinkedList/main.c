@@ -24,6 +24,8 @@ void deleteAtIndex(struct Node** pointer2Head, int index);
 
 void reverseList(struct Node** pointer2Head);
 
+void reverseRecursive(struct Node** pointer2Head, struct Node* pointer);
+
 int main(int argc, const char * argv[]) {
     
     
@@ -39,15 +41,22 @@ int main(int argc, const char * argv[]) {
     
     printList(head);
     
-    printf("start deleting... \n");
+    printf("\nstart deleting... \n");
     
     deleteAtIndex(&head, 4);
     
     printList(head);
     
-    printf("start reversing... \n");
+    printf("\nstart reversing... \n");
     
     reverseList(&head);
+    
+    printList(head);
+    
+    
+    printf("\nstart reversing recursively ... \n");
+    
+    reverseRecursive(&head, head);
     
     printList(head);
     
@@ -152,6 +161,21 @@ void reverseList(struct Node** pointer2Head){
     // reset the head to the prev position
     *pointer2Head = prev;
     
+}
+
+
+void reverseRecursive(struct Node** pointer2Head, struct Node* pointer){
+    
+    if (pointer-> next == NULL) {
+        *pointer2Head = pointer;
+        return;
+    }
+    
+    reverseRecursive(pointer2Head, pointer-> next);
+    
+    struct Node* temp = pointer -> next;
+    temp -> next = pointer;
+    pointer -> next = NULL;
 }
 
 
