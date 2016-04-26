@@ -22,5 +22,15 @@ int main(int argc, const char * argv[]) {
     insertAtIndex(3, 4);
     printList();
     
+    deleteAtIndex(0);
+    printList();
+    
+    reverseList();
+    printList();
+    
+    
+    
+    printList();
+    
     return 0;
 }

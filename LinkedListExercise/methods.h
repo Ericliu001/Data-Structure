@@ -10,6 +10,7 @@
 #define methods_h
 
 #include <stdio.h>
+#include <stdlib.h>
 
 #endif /* methods_h */
 
@@ -23,14 +24,13 @@ struct Node{
 
 
 
-
-
 void printList();
 
 void insertAtHead(int data);
 
 void insertAtIndex(int index, int data);
 
+void deleteAtHead();
 
 void deleteAtIndex(int index);
 

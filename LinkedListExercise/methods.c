@@ -35,6 +35,7 @@ void insertAtHead(int data){
 void insertAtIndex(int index, int data){
     if (index == 0) {
         insertAtHead(data);
+        return;
     }
     
     struct Node* temp = malloc(sizeof(struct Node));
@@ -55,12 +56,80 @@ void insertAtIndex(int index, int data){
     }else{
         printf(" index out of bound!");
     }
+    
+}
+
+void deleteAtHead(){
+    if (head == NULL) {
+        return;
+    }
+    
+    struct Node* temp = head;
+    head = head -> next;
+    free(temp);
+}
+
+
+void deleteAtIndex(int index){
+    if (index == 0) {
+        deleteAtHead();
+        return;
+    }
+    
+    struct Node* current = head;
+    struct Node* next = current;
+    struct Node* temp;
+    
+    int i = 0;
+    while (next -> next != NULL & i < index) {
+        next = next -> next;
+        i++;
+    }
+    
+    if (i == index) {
+        temp = next;
+        current -> next = next -> next;
+        free(temp);
+    }else{
+        printf(" index out of bound!");
+    }
+    
+    
+    
+    
+}
+
+void reverseList(){
+    struct Node *prev, *current, *next;
+    prev = NULL;
+    next = head;
+    current = next;
+    
+    while (next != NULL) {
+        current = next;
+        next = next -> next;
+        
+        current -> next = prev;
+        prev = current;
+    }
+    
+    // DO NOT forget this line!!!!
+    head = current;
 
 }
 
 
-void deleteAtIndex(int index){}
 
-void reverseList(){}
 
-void reverseRecursive( struct Node* pointer){}
+void reverseRecursive( struct Node* pointer){
+    if (pointer -> next == NULL) {
+        head = pointer;
+        return;
+    }else{
+        
+        reverseRecursive(pointer -> next);
+        pointer -> next -> next = pointer;
+        pointer -> next = NULL;
+        
+    }
+}
