@@ -9,6 +9,8 @@
 #include "methods.h"
 
 
+// struct Node* head = NULL;
+
 struct Node* head = NULL;
 
 void printList(){

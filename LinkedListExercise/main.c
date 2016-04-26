@@ -29,7 +29,7 @@ int main(int argc, const char * argv[]) {
     printList();
     
     
-    
+    reverseRecursive(head);
     printList();
     
     return 0;

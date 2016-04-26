@@ -21,7 +21,7 @@ struct Node{
     struct Node* next;
 };
 
-
+extern struct Node* head;
 
 
 void printList();
